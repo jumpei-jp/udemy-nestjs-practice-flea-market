@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { CreateItemDto } from './dto/create-item.dto';
 import { ItemStatus } from './item-status.enum';
 import { Item } from './item.model';
 
@@ -17,7 +18,11 @@ export class ItemsService {
   }
 
   // 受け取ったパラメータをitemという配列に入れて返す
-  create(item: Item): Item {
+  create(createItemDto: CreateItemDto): Item {
+    const item: Item = {
+      ...createItemDto,
+      status: ItemStatus.ON_SALE, // statusはDtoにないので定義
+    };
     this.items.push(item);
     return item;
   }
