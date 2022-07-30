@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ItemStatus } from './item-status.enum';
 import { Item } from './item.model';
 import { ItemsService } from './items.service';
@@ -12,6 +12,12 @@ export class ItemsController {
   @Get()
   findAll(): Item[] {
     return this.itemsService.findAll();
+  }
+
+  // 特定のitemを取得
+  @Get(':id') // idをパスで受け取る(引数が可変の場合':'を入れる)
+  findById(@Param('id') id: string): Item {
+    return this.itemsService.findById(id);
   }
 
   // Itemを保存

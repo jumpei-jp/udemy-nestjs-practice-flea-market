@@ -10,6 +10,11 @@ export class ItemsService {
     return this.items;
   }
 
+  // idを元にItemを取得する
+  findById(id: string): Item {
+    return this.items.find((item) => item.id === id);
+  }
+
   // 受け取ったパラメータをitemという配列に入れて返す
   create(item: Item): Item {
     this.items.push(item);
