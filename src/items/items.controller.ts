@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseUUIDPipe,
   Patch,
   Post,
 } from '@nestjs/common';
@@ -24,7 +25,7 @@ export class ItemsController {
 
   // 特定のitemを取得
   @Get(':id') // idをパスで受け取る(引数が可変の場合':'を入れる)
-  findById(@Param('id') id: string): Item {
+  findById(@Param('id', ParseUUIDPipe) id: string): Item {
     return this.itemsService.findById(id);
   }
 
@@ -37,13 +38,13 @@ export class ItemsController {
 
   // 商品を購入
   @Patch(':id')
-  updateStatus(@Param('id') id: string): Item {
+  updateStatus(@Param('id', ParseUUIDPipe) id: string): Item {
     return this.itemsService.updateStatus(id);
   }
 
   // 商品削除
   @Delete(':id')
-  delete(@Param('id') id: string): void {
+  delete(@Param('id', ParseUUIDPipe) id: string): void {
     this.itemsService.delete(id);
   }
 }
