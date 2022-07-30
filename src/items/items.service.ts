@@ -4,8 +4,10 @@ import { Item } from './item.model';
 @Injectable()
 export class ItemsService {
   private items: Item[] = [];
-  findAll() {
-    return 'This is ItemsService';
+
+  // メモリに保存されているcreateで作成されたItemを返す
+  findAll(): Item[] {
+    return this.items;
   }
 
   // 受け取ったパラメータをitemという配列に入れて返す

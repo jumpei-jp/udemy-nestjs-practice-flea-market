@@ -10,7 +10,7 @@ export class ItemsController {
 
   // item全てを取得する
   @Get()
-  findAll() {
+  findAll(): Item[] {
     return this.itemsService.findAll();
   }
 
