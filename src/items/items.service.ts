@@ -29,4 +29,10 @@ export class ItemsService {
     item.status = ItemStatus.SOLD_OUT;
     return item;
   }
+
+  // 商品の削除
+  delete(id: string): void {
+    //指定したidの商品以外を残す
+    this.items = this.items.filter((item) => item.id !== id);
+  }
 }
